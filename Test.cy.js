@@ -28,7 +28,7 @@ describe('test form', () => {
   })
   
   it('Select month', () => {	
-	cy.get('#dateOfBirthInput').click({force: true})
+	cy.get('#dateOfBirthInput').click()
 	cy.get('.react-datepicker__month-select').select('1')
   })
   
@@ -81,7 +81,6 @@ describe('test login', () => {
 	 cy.contains('Book Store Application').click()
 	 cy.wait(500)
 	 cy.contains('Login').click()
-  	 cy.wait(500)
   })	
   
   it('login', () => {  
