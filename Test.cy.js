@@ -1,4 +1,4 @@
-describe('open website', () => {
+describe('test form', () => {
   before(() => {
     cy.visit('https://demoqa.com/')
   })
@@ -10,20 +10,20 @@ describe('open website', () => {
 
   })
  
-  it('fill in name', () => {
+ it('fill in name', () => {
 	cy.get('#firstName').invoke('val','Test')
 	cy.get('#lastName').invoke('val','Tester')
   })
   
-  it('fill in email', () => {	
+ it('fill in email', () => {	
 	cy.get('#userEmail').invoke('val','test.tester@testing.com')
   })
  
-  it('choose gender', () => {	
+ it('choose gender', () => {	
 	cy.contains('Male').click()
   })
   
-  it('fill in phonenumber', () => {	
+ it('fill in phonenumber', () => {	
 	cy.get('#userNumber').invoke('val','0499223344')
   })
   
@@ -70,15 +70,30 @@ describe('open website', () => {
 	cy.get('#closeLargeModal').click({force: true})
   })  
   
-  it('login', () => {
-	 cy.contains('Book Store').click()
-	 cy.contains('Login').click()
+})
+
+describe('test login', () => {
+  before(() => {
+    cy.visit('https://demoqa.com/')
+  })  
+ 
+  it('go to page', () => {
+	 cy.contains('Book Store Application').click()
 	 cy.wait(500)
-	 
-	 cy.get('#userName').type('admin')
+	 cy.contains('Login').click()
+  	 cy.wait(500)
+  })	
+  
+  it('login', () => {  
+  	 cy.wait(500)
+     cy.get('#userName').type('admin')
 	 cy.get('#password').type('admin')
 	 cy.get('#login').click()
 	 
 	 cy.contains('Invalid username or password!')
-  })	 
+  }) 
+  
+  it('login failed', () => {  
+	 cy.contains('Invalid username or password!')
+  }) 
 })
