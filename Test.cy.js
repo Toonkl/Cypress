@@ -10,43 +10,51 @@ describe('open website', () => {
 
   })
  
- it('fill in name', () => {
-	cy.get('#firstName').type('Test')
-	cy.get('#lastName').type('Tester')
+  it('fill in name', () => {
+	cy.get('#firstName').invoke('val','Test')
+	cy.get('#lastName').invoke('val','Tester')
   })
   
- it('fill in email', () => {	
-	cy.get('#userEmail').type('test.tester@testing.com')
+  it('fill in email', () => {	
+	cy.get('#userEmail').invoke('val','test.tester@testing.com')
   })
  
- it('choose gender', () => {	
+  it('choose gender', () => {	
 	cy.contains('Male').click()
   })
   
- it('fill in phonenumber', () => {	
-	cy.get('#userNumber').type('0499223344')
+  it('fill in phonenumber', () => {	
+	cy.get('#userNumber').invoke('val','0499223344')
   })
   
- it('fill in date of birth', () => {	
-	cy.get('#dateOfBirthInput').click({force: true}).invoke('val','11 feb 1994').type('{enter}')
-	
+  it('Select month', () => {	
+	cy.get('#dateOfBirthInput').click({force: true})
+	cy.get('.react-datepicker__month-select').select('1')
   })
   
- it('Choose Subjects', () => {	
+  it('select year', () => {	
+	cy.get('.react-datepicker__year-select').select('1994')
+  })
+  
+  it('select day', () => {	
+	cy.get('[aria-label="Choose Friday, February 11th, 1994"]').click()
+  })
+  
+  it('Choose Subjects', () => {	
 	cy.get('#subjectsContainer').click().type('com{enter}')
   })
   
- it('choose hobbies', () => {	
+  it('choose hobbies', () => {	
 	cy.contains('Sports').click()
 	cy.contains('Reading').click()
 	cy.contains('Music').click()
   })
   
- it('fill in address', () => {	
-	cy.get('#currentAddress').type('Kesseldallaan 72\n3010 Kessel-lo')
+  it('fill in address', () => {	
+	cy.get('#currentAddress').invoke('val','Kesseldallaan 72\n3010 Kessel-lo')
   })
   
- it('choose state and city', () => {	
+  it('choose state and city', () => {	
 	cy.viewport(1200,1200)
 	cy.wait(150)
 	cy.get('#state').click()
@@ -56,13 +64,13 @@ describe('open website', () => {
 	cy.contains('Panipat').click()
   })
   
- it('submit form', () => {
+  it('submit form', () => {
 	cy.get('#submit').click({force: true})
 	cy.wait(2000)
 	cy.get('#closeLargeModal').click({force: true})
   })  
   
- it('login', () => {
+  it('login', () => {
 	 cy.contains('Book Store').click()
 	 cy.contains('Login').click()
 	 cy.wait(500)
