@@ -88,8 +88,6 @@ describe('test login', () => {
      cy.get('#userName').type('admin')
 	 cy.get('#password').type('admin')
 	 cy.get('#login').click()
-	 
-	 cy.contains('Invalid username or password!')
   }) 
   
   it('login failed', () => {  
